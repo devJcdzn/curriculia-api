@@ -2,7 +2,6 @@ import { exec } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { promisify } from "node:util";
-import { convertPDF } from "pdf2image";
 import { uploadToR2 } from "../providers/r2";
 
 const execPromise = promisify(exec);
@@ -65,25 +64,32 @@ export async function generatePDF(latexCode: string, key: string) {
 export async function convertToImage(fileKey: string) {
 	const tempDir = path.join("/tmp");
 	const pdfFilePath = path.join(tempDir, `${fileKey}.pdf`);
-	const imgFilePath = path.join(tempDir, "images");
+	const imgDirPath = path.join(tempDir, "images");
+	const outputPrefix = path.join(imgDirPath, fileKey);
 
-	if (!fs.existsSync(imgFilePath)) {
-		fs.mkdirSync(imgFilePath, { recursive: true });
+	if (!fs.existsSync(imgDirPath)) {
+		fs.mkdirSync(imgDirPath, { recursive: true });
 	}
 
+	const outputImagePath = `${outputPrefix}.png`;
+
 	try {
-		const result = await convertPDF(pdfFilePath, {
-			outputFormat: `${imgFilePath}/${fileKey}_%d.png`,
-		});
+		await execPromise(
+			`pdftoppm -png -singlefile "${pdfFilePath}" "${outputPrefix}"`,
+		);
+
+		if (!fs.existsSync(outputImagePath)) {
+			throw new Error("Imagem não foi gerada.");
+		}
 
 		return await uploadToR2(
-			result[0].path,
+			outputImagePath,
 			`previews/${fileKey}`,
-			"application/png",
+			"image/png",
 		);
 	} catch (error) {
 		throw new Error(
-			`Error converting PDF to image: ${(error as Error).message}`,
+			`Erro ao converter PDF para imagem: ${(error as Error).message}`,
 		);
 	}
 }
