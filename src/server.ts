@@ -1,8 +1,11 @@
+import { config } from "dotenv";
 import { app } from "./app";
 import { connectDB } from "./config/mongoose";
 import { env } from "./env";
 
 async function main() {
+	config();
+
 	try {
 		await connectDB();
 

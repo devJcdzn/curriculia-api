@@ -1,7 +1,8 @@
 import fs from "node:fs";
+import { join } from "node:path";
 
-const path = `${__dirname}`;
-const rawLatexModel = fs.readFileSync(`${path}/model.txt`).toString();
+const modelPath = join(__dirname, "../lib/model.txt");
+const rawLatexModel = fs.readFileSync(modelPath, "utf-8");
 
 export const generateLatexResumeByJson = (profileData: {
 	fullName: string;
