@@ -5,6 +5,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Instala LaTeX
 RUN apt-get update && apt-get install -y \
+  poppler-utils \
   texlive-latex-base \
   texlive-fonts-recommended \
   texlive-latex-recommended \

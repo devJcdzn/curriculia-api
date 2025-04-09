@@ -31,7 +31,7 @@ export const testGenerate = async () => {
 };
 
 export async function generatePDF(latexCode: string, key: string) {
-	const tempDir = path.join(process.cwd(), "tmp");
+	const tempDir = path.join("/tmp");
 	if (!fs.existsSync(tempDir)) fs.mkdirSync(tempDir);
 
 	const texFilePath = path.join(tempDir, `${key}.tex`);
@@ -63,7 +63,7 @@ export async function generatePDF(latexCode: string, key: string) {
 }
 
 export async function convertToImage(fileKey: string) {
-	const tempDir = path.join(process.cwd(), "tmp");
+	const tempDir = path.join("/tmp");
 	const pdfFilePath = path.join(tempDir, `${fileKey}.pdf`);
 	const imgFilePath = path.join(tempDir, "images");
 
@@ -89,6 +89,6 @@ export async function convertToImage(fileKey: string) {
 }
 
 export function deleteLocalFiles() {
-	const tempDir = path.join(process.cwd(), "tmp");
+	const tempDir = path.join("/tmp");
 	fs.rmSync(tempDir, { recursive: true });
 }
