@@ -24,4 +24,4 @@ COPY . .
 RUN npm install && npm run build
 
 # Comando para iniciar a aplicação
-CMD ["node", "dist/index.js"]
+CMD ["node", "dist/server.js"]
