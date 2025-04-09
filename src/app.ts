@@ -2,6 +2,7 @@ import fastifyCors from "@fastify/cors";
 import { fastify } from "fastify";
 import { fastifyRawBody } from "fastify-raw-body";
 import {
+	type ZodTypeProvider,
 	jsonSchemaTransform,
 	serializerCompiler,
 	validatorCompiler,
@@ -13,7 +14,7 @@ import { routes } from "./routes";
 
 const app = fastify({
 	bodyLimit: 1048576,
-}).withTypeProvider();
+}).withTypeProvider<ZodTypeProvider>();
 
 app.register(fastifyRawBody, {
 	field: "rawBody",
