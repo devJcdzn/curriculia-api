@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 # Copia arquivos para build
-COPY package.json package-lock.json ./
+COPY package.json pnpm-lock.yaml ./
 RUN npm install
 
 COPY . .
