@@ -13,5 +13,8 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "moduleResolution": "node16"
-  }
+  },
+  "include": [
+    "src/**/*"
+  ]
 }

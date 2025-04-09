@@ -1,10 +1,9 @@
-# Imagem base com Node.js 20 e Debian (ótimo para pacotes via apt)
 FROM node:20-bullseye
 
-# Evita prompts interativos do apt
+# Evita prompts
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Instala LaTeX e ferramentas necessárias
+# Instala LaTeX
 RUN apt-get update && apt-get install -y \
   texlive-latex-base \
   texlive-fonts-recommended \
@@ -14,14 +13,16 @@ RUN apt-get update && apt-get install -y \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
-# Define o diretório do app
 WORKDIR /app
 
-# Copia os arquivos do projeto
+# Copia arquivos para build
+COPY package.json package-lock.json ./
+RUN npm install
+
 COPY . .
 
-# Instala dependências e compila TypeScript
-RUN npm install && npm run build
+# Compila e move model.txt
+RUN npm run build
 
-# Comando para iniciar a aplicação
-CMD ["node", "dist/server.js"]
+# Inicia a aplicação
+CMD ["npm", "start"]
