@@ -1,0 +1,74 @@
+POST http://localhost:3333/resume/create
+Content-Type: application/json
+
+{
+  "profileData": {
+    "fullName": "Jean Carlos",
+    "title": "FullStack",
+    "location": "Espirito Santo, Brasil",
+    "contact": {
+      "email": "lopesjean81@gmail.com",
+      "phone": "27992535560",
+      "linkedin": "https://linkedin.com/in/jeancldev",
+      "github": "https://github.com/devJcdzn"
+    },
+    "about": "Desenvolvedor fullstack com 6 anos de experiência",
+    "experiences": [
+      {
+        "position": "Desenvolvedor Fullstack",
+        "company": "Empresa Pic Pay",
+        "startDate": "2021-05",
+        "endDate": "2023-10",
+        "responsibilities": [
+          "Desenvolvimento de aplicações web",
+          "Manutenção de sistemas legados"
+        ],
+        "achievements": [
+          "Redução de 30% no tempo de carregamento do sistema"
+        ]
+      }
+    ],
+    "education": [
+      {
+        "degree": "Bacharel em Matemática",
+        "institution": "UFES",
+        "yearOfCompletion": "2026"
+      }
+    ],
+    "skills": ["Javascript", "React.js", "Node.js", "Next.js", "Nest.js"],
+    "projects": [
+      {
+        "name": "Curriculia",
+        "description": "Gerador de currículos e propostas de freelas no padrão FAANG's com IA.",
+        "technologies": ["Fastify", "Typescript", "LaTeX", "MongoDB", "Next.js", "GeminiAPI"],
+        "link": "https://curriculia.site"
+      }
+    ],
+    "certifications": [
+      {
+        "name": "AWS Certified Developer",
+        "issuer": "Amazon",
+        "year": "2022"
+      }
+    ],
+    "languages": [
+      {
+        "language": "Português",
+        "level": "Nativo"
+      },
+      {
+        "language": "Inglês",
+        "level": "Conversacional"
+      }
+    ]
+  }
+}
+
+###
+POST http://localhost:3333/pay?fileKey=resume_jean_carlos-5TShlNyiriDqXwNPVAKM0
+Content-Type: application/json
+
+{
+  "email": "lopesjean81@gmail.com",
+  "method": "card"
+}

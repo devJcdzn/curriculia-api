@@ -1,0 +1,190 @@
+% Document class and basic packages
+\documentclass[a4paper]{article}
+
+% Essential packages
+\usepackage{fullpage}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{textcomp}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[hidelinks]{hyperref}
+\usepackage[left=2cm, right=2cm, top=2cm]{geometry}
+\usepackage{longtable}
+
+% Document settings
+\textheight=10in
+\pagestyle{empty}
+\raggedright
+
+% Custom commands
+\def\bull{\vrule height 0.8ex width .7ex depth -.1ex}
+
+\newcommand{\area}[2]{
+    \vspace*{-9pt}
+    \begin{verse}
+        \textbf{#1}   #2
+    \end{verse}
+}
+
+\newcommand{\lineunder}{
+    \vspace*{-8pt} \\
+    \hspace*{-18pt} \hrulefill \\
+}
+
+\newcommand{\header}[1]{
+    {\hspace*{-18pt}\vspace*{6pt} \textsc{#1}}
+    \vspace*{-6pt} \lineunder
+}
+
+\newcommand{\employer}[3]{
+    { \textbf{#1} (#2)\\ \underline{\textbf{\emph{#3}}}\\  }
+}
+
+\newcommand{\contact}[3]{
+    \vspace*{-10pt}
+    \begin{center}
+        {\Huge \scshape {#1}}\\
+        #2 \\ #3
+    \end{center}
+    \vspace*{-8pt}
+}
+
+\newenvironment{achievements}{
+    \begin{list}
+        {$\bullet$}{\topsep 0pt \itemsep -2pt}}{\vspace*{4pt}
+    \end{list}
+}
+
+\newcommand{\schoolwithcourses}[4]{
+    \textbf{#1} #2 $\bullet$ #3\\
+    #4 \\
+    \vspace*{5pt}
+}
+
+\newcommand{\school}[4]{
+    \textbf{#1} #2 $\bullet$ #3\\
+    #4 \\
+}
+
+% Begin document
+\begin{document}
+    \vspace*{-40pt}
+
+    % Header section
+    \vspace*{-2pt}
+    \begin{center}
+        {\Huge \scshape {André Elias}}\\
+        \vspace*{2pt}
+        \ {Software Engineer}\\
+        \vspace*{2pt}
+        \href{mailto:andreeliasdev@gmail.com}{andreeliasdev@gmail.com} | \href{tel:+55 31 983399692}{+55 31 983399692}\\
+        \vspace*{4pt}
+        \textbf{\href{https://www.linkedin.com/in/andr\%C3\%A9-elias/}{Linkedin | }}\textbf{\href{http://github.com/dedekpo}{GitHub | }}\textbf{\href{https://x.com/andre_elias98}{X |}}
+        \textbf{\href{https://www.andreelias.dev}{Portfolio}}\\
+    \end{center}
+
+    % Summary section
+    \header{Summary}
+    \vspace{2mm}
+    Full-stack engineer with 5+ years of experience optimizing performance and scalability for web applications. Led engineering at a Y Combinator startup, launched SaaS products generating \$30K+ revenue, and built a 3D multiplayer game that reached 1M+ plays.
+    \vspace{2mm}
+
+    % Experience section
+    \header{Experience}
+    \vspace{2mm}
+
+    \textbf{Resquared}\textbf{ | Full-Stack Software Engineer} \hfill  Sep 2023 - Nov 2024\\
+    \vspace{-3mm}
+    \begin{itemize} \itemsep -3pt
+        \item Optimized front-end performance by 40\% through React component optimization and implementing code splitting, reducing initial load time from 3s to 1.8s.
+        \item Reduced API response time by 25\% by implementing caching strategies and optimizing database queries.
+    \end{itemize}
+
+    \textbf{Kalidash}\textbf{ | Senior Software Engineer } \hfill  Nov 2022 - Nov 2024\\
+    \vspace{-3mm}
+    \begin{itemize} \itemsep -3pt
+        \item Increased system uptime to 99.9\% by implementing robust error handling and automated monitoring, reducing downtime by 60\%.
+        \item Mentored 2 junior developers, reducing their time-to-productivity by 40\% through structured training and code reviews.
+    \end{itemize}
+
+    \textbf{ICE Play}\textbf{ | Cofounder \& Software Engineer} \hfill  Dec 2021 - Nov 2022\\
+    \vspace{-3mm}
+    \begin{itemize} \itemsep -3pt
+        \item Achieved 50\% reduction in video buffering by implementing adaptive bitrate streaming, leading to 35\% increase in user engagement.
+        \item Reduced AWS costs by 30\% through infrastructure optimization and implementing auto-scaling policies.
+    \end{itemize}
+
+    \textbf{Hotmart}\textbf{ | Data Analyst Intern} \hfill  Dec 2020 - Dec 2021\\
+    \vspace{-3mm}
+    \begin{itemize} \itemsep -3pt
+        \item Improved data processing efficiency by 45\% by optimizing SQL queries and implementing parallel processing.
+        \item Reduced data warehouse query time by 60\% through index optimization and materialized views.
+    \end{itemize}
+
+    % Projects section
+    \header{Projects}
+    \vspace{2mm}
+
+    \textbf{Court Kings 3D}\text{ | 3D Multiplayer Game } \hfill  Jun 2023\\
+    \vspace{-3mm}
+    \begin{itemize} \itemsep -3pt
+        \item Achieved 1M+ plays with 4.8/5 user rating, optimizing game performance to run at 60 FPS on low-end devices.
+        \item Implemented efficient WebSocket communication reducing latency by 40\% and enabling real-time multiplayer features.
+    \end{itemize}
+
+    \textbf{LoveYuu}\text{ | Micro SaaS for Couples}\hfill  Sep 2024\\
+    \vspace{-3mm}
+    \begin{itemize} \itemsep -3pt
+        \item Generated \$25,000+ USD in revenue through organic traffic, achieving 40\% month-over-month growth.
+        \item Achieved 95\% user satisfaction rate through intuitive UI/UX design and responsive customer support.
+    \end{itemize}
+
+    \textbf{YouTube Channel}\hfill  Oct 2024\\
+    \vspace{-3mm}
+    \begin{itemize} \itemsep -3pt
+        \item Grew channel to 13,000+ subscribers with 500K+ monthly views, achieving 45\% audience retention rate.
+        \item Secured \$10,000+ in brand sponsorships through high-quality technical content and engaged community.
+    \end{itemize}
+
+    \textbf{Next.js SaaS Template}\hfill  Nov 2024\\
+    \vspace{-3mm}
+    \begin{itemize} \itemsep -3pt
+        \item Generated \$5,000+ USD in revenue through organic sales, with 85\% customer satisfaction rate.
+        \item Reduced development time by 60\% for new SaaS projects through reusable components and documentation.
+    \end{itemize}
+
+    \textbf{Jesus In Chat}\hfill  Jan 2025\\
+    \vspace{-3mm}
+    \begin{itemize} \itemsep -3pt
+        \item Achieved \$400+ USD MRR with 90\% user retention rate through personalized biblical Q\&A responses.
+        \item Processed 10,000+ daily messages with 95\% accuracy using optimized WhatsApp API integration.
+    \end{itemize}
+
+    \textbf{MyVendas}\hfill  Mar 2025\\
+    \vspace{-3mm}
+    \begin{itemize} \itemsep -3pt
+        \item Successfully sold for \$3,000 USD, serving 50+ active users with 99.9\% uptime.
+        \item Implemented multi-tenant architecture supporting 100+ concurrent users with 200ms average response time.
+    \end{itemize}
+
+    \vspace{1mm}
+
+    % Skills section
+    \header{Skills}
+    \vspace{2mm}
+    \begin{longtable}{p{4cm}p{12cm}}
+        Programming Languages: & Typescript, Python, C, Go \\
+        Frontend: & React, Next.js, Tailwind, Three.js, Solid.js, Zustand, Redux \\
+        Databases \& Servers: & PostgreSQL, MySQL, MongoDB, WebSockets \\
+        Platforms \& Others: & AWS, Firebase, Git, Game Development \\
+    \end{longtable}
+    \vspace{1mm}
+
+    % Education section
+    \header{Education}
+    \vspace{2mm}
+    \textbf{Universidade Federal de Viçosa}\hfill Florestal, Brazil\\
+    Bachelor Computer Science (Incomplete) \hfill Jan 2017 - Dec 2021\\
+
+\end{document}
