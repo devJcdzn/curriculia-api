@@ -2,24 +2,27 @@ FROM debian:bullseye-slim
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+# Instala LaTeX + Node.js + dependências do projeto
 RUN apt-get update && apt-get install -y \
   texlive-latex-base \
-  texlive-latex-recommended \
   texlive-fonts-recommended \
+  texlive-latex-recommended \
   texlive-latex-extra \
   ghostscript \
   curl \
-  ca-certificate \
+  ca-certificates \
+  && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+  && apt-get install -y nodejs \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
-
-RUN curl -fsSL https://deb.nodesource.com/setup_20.19.0 | bash - && \
-  apt-get install -y nodejs
 
 WORKDIR /app
 
+COPY package*.json ./
+RUN npm install
+
 COPY . .
 
-RUN npm install
+RUN npm run build
 
 EXPOSE 3000
 CMD ["npm", "start"]
