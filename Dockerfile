@@ -29,4 +29,4 @@ RUN apt-get update && apt-get install -y \
 # Instala dependências Node
 RUN npm install && npm run build
 
-CMD ["node", "dist/main.js"]
+CMD ["node", "dist/server.js"]
