@@ -30,7 +30,7 @@ export const testGenerate = async () => {
 };
 
 export async function generatePDF(latexCode: string, key: string) {
-	const tempDir = path.join("/tmp");
+	const tempDir = path.join("/tmp", "resumes");
 	if (!fs.existsSync(tempDir)) fs.mkdirSync(tempDir);
 
 	const texFilePath = path.join(tempDir, `${key}.tex`);
@@ -62,7 +62,7 @@ export async function generatePDF(latexCode: string, key: string) {
 }
 
 export async function convertToImage(fileKey: string) {
-	const tempDir = path.join("/tmp");
+	const tempDir = path.join("/tmp", "resumes");
 	const pdfFilePath = path.join(tempDir, `${fileKey}.pdf`);
 	const imgDirPath = path.join(tempDir, "images");
 	const outputPrefix = path.join(imgDirPath, fileKey);
@@ -95,6 +95,8 @@ export async function convertToImage(fileKey: string) {
 }
 
 export function deleteLocalFiles() {
-	const tempDir = path.join("/tmp");
-	fs.rmSync(tempDir, { recursive: true });
+	const tempDir = path.join("/tmp", "resumes"); // pasta segura só para você
+	if (fs.existsSync(tempDir)) {
+		fs.rmSync(tempDir, { recursive: true, force: true });
+	}
 }
