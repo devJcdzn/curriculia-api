@@ -1,9 +1,21 @@
 FROM node:20-bullseye
 
-# Evita prompts
-ENV DEBIAN_FRONTEND=noninteractive
+WORKDIR /app
 
-# Instala LaTeX
+COPY . .
+
+# Instala dependências básicas
+RUN apt-get update && apt-get install -y \
+  curl \
+  ca-certificates \
+  gnupg \
+  lsb-release
+
+# Instala Node.js 20 (se não for incluído pela imagem base)
+RUN curl -fsSL https://deb.nodesource.com/setup_20.19.0 | bash - && \
+  apt-get install -y nodejs
+
+# Instala LaTeX + poppler-utils
 RUN apt-get update && apt-get install -y \
   poppler-utils \
   texlive-latex-base \
@@ -14,16 +26,7 @@ RUN apt-get update && apt-get install -y \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /app
+# Instala dependências Node
+RUN npm install && npm run build
 
-# Copia arquivos para build
-COPY package.json pnpm-lock.yaml ./
-RUN npm install
-
-COPY . .
-
-# Compila e move model.txt
-RUN npm run build
-
-# Inicia a aplicação
-CMD ["npm", "start"]
+CMD ["node", "dist/main.js"]
